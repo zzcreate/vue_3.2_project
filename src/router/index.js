@@ -1,19 +1,58 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/login')
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/',
+    name: '/',
+    component: () => import('../layout'),
+    redirect: '/users',
+    children: [
+      {
+        path: 'users',
+        name: 'Users',
+        component: () => import('@/views/users/index.vue')
+      },
+      {
+        path: 'categories',
+        name: 'Categories',
+        component: () => import('@/views/goods/Categories.vue')
+      },
+      {
+        path: 'goods',
+        name: 'Goods',
+        component: () => import('@/views/goods/index.vue')
+      },
+      {
+        path: 'orders',
+        name: 'Orders',
+        component: () => import('@/views/orders/index.vue')
+      },
+      {
+        path: 'params',
+        name: 'Params',
+        component: () => import('@/views/goods/Params.vue')
+      },
+      {
+        path: 'reports',
+        name: 'Reports',
+        component: () => import('@/views/reports/index.vue')
+      },
+      {
+        path: 'rights',
+        name: 'Rights',
+        component: () => import('@/views/rights/index.vue')
+      },
+      {
+        path: 'roles',
+        name: 'Roles',
+        component: () => import('@/views/rights/Roles.vue')
+      }
+    ]
   }
 ]
 

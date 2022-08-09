@@ -31,7 +31,7 @@ export default {
       return new Promise((resolve, reject) => {
         loginAPI(userInfo)
           .then(res => {
-            console.log(res)
+            // console.log(res)
             commit('setToken', res.token)
             setTokenTime()
             router.replace('/')
